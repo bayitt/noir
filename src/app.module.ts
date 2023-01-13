@@ -9,15 +9,15 @@ import { ConfigModule } from './modules/config/config.module';
 
 @Module({
   imports: [
-    // GraphQLModule.forRoot<ApolloDriverConfig>({
-    //   driver: ApolloDriver,
-    //   typePaths: [join(process.cwd(), 'src/graphql/*.graphql')],
-    //   definitions: {
-    //     path: join(process.cwd(), 'src/graphql/schema.ts'),
-    //   },
-    //   introspection: true,
-    //   playground: true,
-    // }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      typePaths: [join(process.cwd(), 'src/graphql/*.graphql')],
+      definitions: {
+        path: join(process.cwd(), 'src/graphql/schema.ts'),
+      },
+      introspection: true,
+      playground: true,
+    }),
     AuthModule,
     ConfigModule,
   ],

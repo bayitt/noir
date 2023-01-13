@@ -1,0 +1,15 @@
+
+
+type AuthResponse {
+  email: String!
+  token: String!
+}
+
+type Query {
+
+}
+
+type Mutation {
+  login: AuthResponse
+}
+
