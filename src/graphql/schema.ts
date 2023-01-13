@@ -8,6 +8,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export interface UpdateCategoryInput {
+    uuid: string;
+    name?: Nullable<string>;
+    slug?: Nullable<string>;
+}
+
 export interface Category {
     uuid: string;
     name: string;
@@ -18,6 +24,7 @@ export interface Category {
 
 export interface IMutation {
     createCategory(name?: Nullable<string>): Nullable<Category> | Promise<Nullable<Category>>;
+    updateCategory(input?: Nullable<UpdateCategoryInput>): Nullable<Category> | Promise<Nullable<Category>>;
     login(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
 }
 

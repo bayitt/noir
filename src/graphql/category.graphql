@@ -6,6 +6,13 @@ type Category {
   updated_at: DateTime!
 }
 
+input UpdateCategoryInput {
+  uuid: String!
+  name: String
+  slug: String
+}
+
 extend type Mutation {
   createCategory(name: String): Category
+  updateCategory(input: UpdateCategoryInput): Category
 }

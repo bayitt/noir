@@ -16,7 +16,7 @@ export class CreateCategoryPipe implements PipeTransform {
     if (categories.length > 0)
       throwException(
         HttpStatus.BAD_REQUEST,
-        'category-001',
+        'category-002',
         `Category with name ${name} exists already`,
       );
 
