@@ -22,7 +22,6 @@ export class GoogleAuthStrategy extends PassportStrategy(Strategy, 'google') {
   async validate(_: string, __: string, profile: any, verify: VerifyCallback) {
     const { emails } = profile;
     const email = emails[0].value;
-    console.log(email);
 
     if (email !== this.configService.get('AUTHORIZED_EMAIL'))
       throwException(

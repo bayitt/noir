@@ -5,6 +5,7 @@ import { ConfigModule } from '../config/config.module';
 import { ConfigService } from '../config/config.service';
 import { TokenGuard } from './token.guard';
 import { TokenStrategy } from './token.strategy';
+import { TokenService } from './token.service';
 
 @Module({
   imports: [
@@ -20,6 +21,11 @@ import { TokenStrategy } from './token.strategy';
     }),
     ConfigModule,
   ],
-  providers: [TokenStrategy, { provide: APP_GUARD, useClass: TokenGuard }],
+  providers: [
+    TokenStrategy,
+    { provide: APP_GUARD, useClass: TokenGuard },
+    TokenService,
+  ],
+  exports: [TokenService],
 })
 export class TokenModule {}
