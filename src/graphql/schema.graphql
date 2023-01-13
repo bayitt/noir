@@ -1,0 +1,12 @@
+type AuthResponse {
+  email: String!
+  token: String!
+}
+
+type Query {
+  dummy: AuthResponse
+}
+
+type Mutation {
+  login: AuthResponse
+}
