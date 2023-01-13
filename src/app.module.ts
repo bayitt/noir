@@ -7,6 +7,8 @@ import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule } from './modules/config/config.module';
 import { TokenModule } from './modules/token/token.module';
+import { CategoryModule } from './modules/category/category.module';
+import { PrismaModule } from './modules/prisma/prisma.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { TokenModule } from './modules/token/token.module';
     AuthModule,
     ConfigModule,
     TokenModule,
+    CategoryModule,
+    PrismaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
