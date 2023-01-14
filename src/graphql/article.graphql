@@ -1,0 +1,21 @@
+type Article {
+  uuid: ID!
+  category: Category!
+  title: String!
+  slug: String!
+  status: Boolean!
+  featured_image: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+input CreateArticleInput {
+  category_uuid: ID!
+  title: String!
+  featured_image: Upload
+  status: Boolean
+}
+
+extend type Mutation {
+  createArticle(input: CreateArticleInput): Article
+}
