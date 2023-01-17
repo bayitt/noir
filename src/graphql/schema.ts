@@ -9,8 +9,9 @@
 /* eslint-disable */
 
 export interface CreateArticleInput {
-    category_uuid: string;
+    category_uuid?: Nullable<string>;
     title: string;
+    content?: Nullable<string>;
     featured_image?: Nullable<Upload>;
     status?: Nullable<boolean>;
 }
@@ -23,11 +24,12 @@ export interface UpdateCategoryInput {
 
 export interface Article {
     uuid: string;
-    category: Category;
+    category?: Nullable<Category>;
     title: string;
     slug: string;
     status: boolean;
-    featured_image: string;
+    content?: Nullable<string>;
+    featured_image?: Nullable<string>;
     created_at: DateTime;
     updated_at: DateTime;
 }

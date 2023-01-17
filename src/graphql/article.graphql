@@ -1,17 +1,19 @@
 type Article {
   uuid: ID!
-  category: Category!
+  category: Category
   title: String!
   slug: String!
   status: Boolean!
-  featured_image: String!
+  content: String
+  featured_image: String
   created_at: DateTime!
   updated_at: DateTime!
 }
 
 input CreateArticleInput {
-  category_uuid: ID!
+  category_uuid: ID
   title: String!
+  content: String
   featured_image: Upload
   status: Boolean
 }

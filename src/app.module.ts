@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
@@ -11,6 +11,7 @@ import { CategoryModule } from './modules/category/category.module';
 import { PrismaModule } from './modules/prisma/prisma.module';
 import { ArticleModule } from './modules/article/article.module';
 import { DateTimeScalar, UploadScalar } from './graphql';
+import { graphqlUploadExpress } from 'graphql-upload-ts';
 
 @Module({
   imports: [
@@ -35,4 +36,8 @@ import { DateTimeScalar, UploadScalar } from './graphql';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(graphqlUploadExpress()).forRoutes('graphql');
+  }
+}
