@@ -6,5 +6,6 @@ import { CreateCategoryResolver, UpdateCategoryResolver } from './mutations';
 @Module({
   imports: [PrismaModule],
   providers: [CategoryService, CreateCategoryResolver, UpdateCategoryResolver],
+  exports: [CategoryService],
 })
 export class CategoryModule {}

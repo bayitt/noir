@@ -1,3 +1,4 @@
+export * from './cloudinary';
 export * from './decorators';
 export * from './exception';
-export * from './upload';
+export * from './string';

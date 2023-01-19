@@ -2,7 +2,7 @@ import { InputType, Field } from '@nestjs/graphql';
 import { GraphQLUpload } from 'graphql-upload-ts';
 import { Stream } from 'stream';
 
-class Upload {
+export class Upload {
   filename: string;
   mimetype: string;
   encoding: string;
