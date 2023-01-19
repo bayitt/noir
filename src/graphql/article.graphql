@@ -6,6 +6,7 @@ type Article {
   status: Boolean!
   content: String
   featured_image: String
+  tags: [Tag]
   created_at: DateTime!
   updated_at: DateTime!
 }

@@ -19,14 +19,17 @@ export class CreateArticleResolver {
   async createArticle(
     @Args('input', CreateArticlePipe) args: CreateArticleInput,
   ) {
+    let slug =
+      args.title.toLowerCase().replace(/ /g, '-') +
+      '-' +
+      generateRandomString(6);
+    slug = slug.startsWith('/') ? slug : '/' + slug;
+
     let articleInput: Prisma.ArticleCreateInput = {
       title: args.title,
       status: Number(args?.status ?? 0),
       content: args?.content,
-      slug:
-        args.title.toLowerCase().replace(/ /g, '-') +
-        '-' +
-        generateRandomString(10),
+      slug,
       tags: {
         create: await this.createTags(args?.tags ?? []),
       },
@@ -46,7 +49,9 @@ export class CreateArticleResolver {
         category: { connect: { uuid: args.category_uuid } },
       };
 
-    return await this.articleService.create(articleInput);
+    const article = await this.articleService.create(articleInput);
+
+    return { ...article, tags: article.tags.map(({ tag }) => ({ ...tag })) };
   }
 
   async createTags(tags: string[]) {
@@ -54,7 +59,7 @@ export class CreateArticleResolver {
 
     for (const tagName of tags) {
       const tag = await this.tagService.findOrCreate(tagName.toLowerCase());
-      tagRelations.push({ tag: { create: { tag_uuid: tag.uuid } } });
+      tagRelations.push({ tag: { connect: { uuid: tag.uuid } } });
     }
 
     return tagRelations;

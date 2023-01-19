@@ -31,6 +31,7 @@ export interface Article {
     status: boolean;
     content?: Nullable<string>;
     featured_image?: Nullable<string>;
+    tags?: Nullable<Nullable<Tag>[]>;
     created_at: DateTime;
     updated_at: DateTime;
 }
@@ -57,6 +58,13 @@ export interface AuthResponse {
 
 export interface IQuery {
     dummy(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
+}
+
+export interface Tag {
+    uuid: string;
+    name: string;
+    created_at: DateTime;
+    updated_at: DateTime;
 }
 
 export type DateTime = any;

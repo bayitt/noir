@@ -9,6 +9,10 @@ export class ArticleService {
   async create(args: Prisma.ArticleCreateInput) {
     return await this.prisma.article.create({
       data: args,
+      include: {
+        category: true,
+        tags: { include: { tag: true } },
+      },
     });
   }
 }

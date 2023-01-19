@@ -16,3 +16,4 @@ type Mutation {
 
 #include category.graphql
 #include article.graphql
+#include tag.graphql
