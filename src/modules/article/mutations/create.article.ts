@@ -1,19 +1,24 @@
 import { Prisma } from '.prisma/client';
 import { Resolver, Args, Mutation } from '@nestjs/graphql';
 import { ConfigService } from 'src/modules/config/config.service';
+import { TagService } from 'src/modules/tag/tag.service';
 import { generateRandomString, uploadImage } from 'src/utilities';
 import { ArticleService } from '../article.service';
 import { CreateArticleInput } from '../inputs';
+import { CreateArticlePipe } from '../pipes';
 
 @Resolver()
 export class CreateArticleResolver {
   constructor(
     private articleService: ArticleService,
     private configService: ConfigService,
+    private tagService: TagService,
   ) {}
 
   @Mutation()
-  async createArticle(@Args('input') args: CreateArticleInput) {
+  async createArticle(
+    @Args('input', CreateArticlePipe) args: CreateArticleInput,
+  ) {
     let articleInput: Prisma.ArticleCreateInput = {
       title: args.title,
       status: Number(args?.status ?? 0),
@@ -22,6 +27,9 @@ export class CreateArticleResolver {
         args.title.toLowerCase().replace(/ /g, '-') +
         '-' +
         generateRandomString(10),
+      tags: {
+        create: await this.createTags(args?.tags ?? []),
+      },
     };
 
     if (args?.featured_image) {
@@ -39,5 +47,16 @@ export class CreateArticleResolver {
       };
 
     return await this.articleService.create(articleInput);
+  }
+
+  async createTags(tags: string[]) {
+    const tagRelations = [];
+
+    for (const tagName of tags) {
+      const tag = await this.tagService.findOrCreate(tagName.toLowerCase());
+      tagRelations.push({ tag: { create: { tag_uuid: tag.uuid } } });
+    }
+
+    return tagRelations;
   }
 }

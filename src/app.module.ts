@@ -12,6 +12,7 @@ import { PrismaModule } from './modules/prisma/prisma.module';
 import { ArticleModule } from './modules/article/article.module';
 import { DateTimeScalar, UploadScalar } from './graphql';
 import { graphqlUploadExpress } from 'graphql-upload-ts';
+import { TagModule } from './modules/tag/tag.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { graphqlUploadExpress } from 'graphql-upload-ts';
     CategoryModule,
     PrismaModule,
     ArticleModule,
+    TagModule,
   ],
   controllers: [AppController],
   providers: [AppService],

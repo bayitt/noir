@@ -14,6 +14,7 @@ export interface CreateArticleInput {
     content?: Nullable<string>;
     featured_image?: Nullable<Upload>;
     status?: Nullable<boolean>;
+    tags?: Nullable<Nullable<string>[]>;
 }
 
 export interface UpdateCategoryInput {

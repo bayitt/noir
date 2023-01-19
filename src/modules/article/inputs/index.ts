@@ -25,4 +25,7 @@ export class CreateArticleInput {
 
   @Field()
   status?: boolean;
+
+  @Field()
+  tags?: string[];
 }

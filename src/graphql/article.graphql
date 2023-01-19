@@ -16,6 +16,7 @@ input CreateArticleInput {
   content: String
   featured_image: Upload
   status: Boolean
+  tags: [String] = []
 }
 
 extend type Mutation {
