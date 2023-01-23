@@ -17,7 +17,7 @@ export class UpdateArticlePipe implements PipeTransform {
       {
         uuid: args.article_uuid,
       },
-      { include: { tag: true } },
+      { tags: { include: { tag: true } } },
     );
 
     if (!article)
