@@ -36,3 +36,14 @@ export const uploadImage = async (
     upload.createReadStream().pipe(stream);
   });
 };
+
+export const deleteImage = async (
+  configService: ConfigService,
+  image: string,
+) => {
+  initCloudinary(configService);
+  const public_id = `${configService.get(
+    'CLOUDINARY_FOLDER',
+  )}/articles/${image}`;
+  await cloudinary.uploader.destroy(public_id);
+};

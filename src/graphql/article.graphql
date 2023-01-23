@@ -20,6 +20,17 @@ input CreateArticleInput {
   tags: [String] = []
 }
 
+input UpdateArticleInput {
+  article_uuid: ID!
+  category_uuid: ID
+  title: String
+  content: String
+  featured_image: Upload
+  status: Boolean
+  tags: [String] = []
+}
+
 extend type Mutation {
   createArticle(input: CreateArticleInput): Article
+  updateArticle(input: UpdateArticleInput): Article
 }

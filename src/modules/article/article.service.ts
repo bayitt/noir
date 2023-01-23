@@ -15,4 +15,22 @@ export class ArticleService {
       },
     });
   }
+
+  async update(uuid: string, args: Prisma.ArticleUpdateInput) {
+    return await this.prisma.article.update({
+      where: { uuid },
+      data: args,
+      include: {
+        category: true,
+        tags: { include: { tag: true } },
+      },
+    });
+  }
+
+  async findUnique(
+    where: Prisma.ArticleWhereUniqueInput,
+    include: { [key: string]: any } = {},
+  ) {
+    return await this.prisma.article.findUnique({ where, include });
+  }
 }
