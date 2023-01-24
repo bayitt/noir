@@ -9,13 +9,9 @@ export class CreateArticlePipe implements PipeTransform {
 
   async transform(args: CreateArticleInput) {
     if (args?.category_uuid) {
-      console.log('0.5');
       const category = await this.categoryService.findUnique({
         uuid: args.category_uuid,
       });
-
-      console.log('0.8');
-      console.log(category);
 
       if (!category)
         return throwException(
@@ -24,8 +20,6 @@ export class CreateArticlePipe implements PipeTransform {
           `Category with uuid ${args.category_uuid} does not exist`,
         );
     }
-
-    console.log('1');
 
     return args;
   }

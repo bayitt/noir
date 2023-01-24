@@ -1,5 +1,5 @@
+import { PartialType } from '@nestjs/mapped-types';
 import { InputType, Field } from '@nestjs/graphql';
-import { GraphQLUpload } from 'graphql-upload-ts';
 import { Stream } from 'stream';
 
 export class Upload {
@@ -28,4 +28,13 @@ export class CreateArticleInput {
 
   @Field()
   tags?: string[];
+}
+
+@InputType()
+export class UpdateArticleInput extends PartialType(CreateArticleInput) {
+  @Field()
+  uuid: string;
+
+  @Field()
+  slug?: string;
 }

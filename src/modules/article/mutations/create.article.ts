@@ -49,9 +49,7 @@ export class CreateArticleResolver {
         category: { connect: { uuid: args.category_uuid } },
       };
 
-    const article = await this.articleService.create(articleInput);
-
-    return { ...article, tags: article.tags.map(({ tag }) => ({ ...tag })) };
+    return await this.articleService.create(articleInput);
   }
 
   async createTags(tags: string[]) {

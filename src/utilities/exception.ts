@@ -5,7 +5,6 @@ export const throwException = (
   error: string,
   message: string,
 ) => {
-  console.log('slsls');
   throw new HttpException(
     {
       statusCode,
