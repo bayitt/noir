@@ -46,7 +46,6 @@ export class UpdateArticleResolver {
       };
     }
 
-    console.log(args);
     if (args?.tags)
       articleInput = {
         ...articleInput,
@@ -58,8 +57,6 @@ export class UpdateArticleResolver {
         },
       };
 
-    console.log(articleInput);
-
     return await this.articleService.update(article.uuid, articleInput);
   }
 
@@ -68,14 +65,10 @@ export class UpdateArticleResolver {
       ({ name }) => !tags.includes(name.toLowerCase()),
     );
 
-    console.log(tagsToDetach);
-    await this.articleService.update(article.uuid, {
-      tags: {
-        disconnect: tagsToDetach.map(({ uuid }) => ({
-          article_uuid_tag_uuid: { article_uuid: article.uuid, tag_uuid: uuid },
-        })),
-      },
-    });
+    await this.tagService.deleteArticleTagLinks(
+      article.uuid,
+      tagsToDetach.map(({ uuid }) => uuid),
+    );
 
     const tagsToAttach = tags.filter(
       (name) =>

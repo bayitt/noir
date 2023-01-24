@@ -12,4 +12,10 @@ export class TagService {
       create: { name },
     });
   }
+
+  async deleteArticleTagLinks(article_uuid: string, tag_uuids: string[]) {
+    await this.prisma.articleOnTag.deleteMany({
+      where: { article_uuid, tag_uuid: { in: tag_uuids } },
+    });
+  }
 }

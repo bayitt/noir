@@ -17,7 +17,9 @@ export const uploadImage = async (
   upload: Upload,
 ): Promise<string> => {
   initCloudinary(configService);
-  const public_id = upload.filename + '_' + generateRandomString(10);
+  const public_id =
+    generateRandomString(Number((Math.random() * 10).toFixed(0) as any)) +
+    generateRandomString(Number((Math.random() * 10).toFixed(0) as any), true);
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
       {
@@ -42,8 +44,8 @@ export const deleteImage = async (
   image: string,
 ) => {
   initCloudinary(configService);
-  const public_id = `${configService.get(
-    'CLOUDINARY_FOLDER',
-  )}/articles/${image}`;
-  await cloudinary.uploader.destroy(public_id);
+  const public_id = `${configService.get('CLOUDINARY_FOLDER')}/articles/${
+    image.split('/articles/')[1].split('.')[0]
+  }`;
+  const response = await cloudinary.uploader.destroy(public_id);
 };
