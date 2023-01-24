@@ -15,7 +15,7 @@ export class UpdateArticlePipe implements PipeTransform {
   async transform(args: UpdateArticleInput) {
     const article = await this.articleService.findUnique(
       {
-        uuid: args.article_uuid,
+        uuid: args.uuid,
       },
       { tags: { include: { tag: true } } },
     );
@@ -24,7 +24,7 @@ export class UpdateArticlePipe implements PipeTransform {
       throwException(
         HttpStatus.NOT_FOUND,
         'article-001',
-        `Article with uuid ${args.article_uuid} does not exist`,
+        `Article with uuid ${args.uuid} does not exist`,
       );
 
     if (args?.category_uuid) {

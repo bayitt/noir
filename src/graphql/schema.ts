@@ -18,7 +18,7 @@ export interface CreateArticleInput {
 }
 
 export interface UpdateArticleInput {
-    article_uuid: string;
+    uuid: string;
     category_uuid?: Nullable<string>;
     title?: Nullable<string>;
     content?: Nullable<string>;
@@ -49,6 +49,7 @@ export interface Article {
 export interface IMutation {
     createArticle(input?: Nullable<CreateArticleInput>): Nullable<Article> | Promise<Nullable<Article>>;
     updateArticle(input?: Nullable<UpdateArticleInput>): Nullable<Article> | Promise<Nullable<Article>>;
+    deleteArticle(uuid: string): Nullable<Article> | Promise<Nullable<Article>>;
     createCategory(name?: Nullable<string>): Nullable<Category> | Promise<Nullable<Category>>;
     updateCategory(input?: Nullable<UpdateCategoryInput>): Nullable<Category> | Promise<Nullable<Category>>;
     login(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;

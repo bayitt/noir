@@ -21,7 +21,7 @@ input CreateArticleInput {
 }
 
 input UpdateArticleInput {
-  article_uuid: ID!
+  uuid: ID!
   category_uuid: ID
   title: String
   content: String
@@ -33,4 +33,5 @@ input UpdateArticleInput {
 extend type Mutation {
   createArticle(input: CreateArticleInput): Article
   updateArticle(input: UpdateArticleInput): Article
+  deleteArticle(uuid: ID!): Article
 }

@@ -22,11 +22,20 @@ export class UpdateArticleResolver {
     { article, args }: { article: Article; args: UpdateArticleInput },
   ) {
     const initialInputs = JSON.parse(JSON.stringify(args));
-    delete initialInputs?.article_uuid;
+    delete initialInputs?.uuid;
     delete initialInputs?.featured_image;
     delete initialInputs?.category_uuid;
 
-    let articleInput: Prisma.ArticleUpdateInput = { ...initialInputs };
+    let articleInput: Prisma.ArticleUpdateInput = {
+      ...initialInputs,
+    };
+
+    if (args?.status !== undefined) {
+      articleInput = {
+        ...articleInput,
+        status: Number(args.status),
+      };
+    }
 
     if (args?.featured_image) {
       article?.featured_image &&

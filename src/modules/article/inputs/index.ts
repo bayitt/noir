@@ -33,7 +33,7 @@ export class CreateArticleInput {
 @InputType()
 export class UpdateArticleInput extends PartialType(CreateArticleInput) {
   @Field()
-  article_uuid: string;
+  uuid: string;
 
   @Field()
   slug?: string;

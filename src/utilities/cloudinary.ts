@@ -47,5 +47,5 @@ export const deleteImage = async (
   const public_id = `${configService.get('CLOUDINARY_FOLDER')}/articles/${
     image.split('/articles/')[1].split('.')[0]
   }`;
-  const response = await cloudinary.uploader.destroy(public_id);
+  await cloudinary.uploader.destroy(public_id);
 };

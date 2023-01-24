@@ -34,9 +34,24 @@ export class ArticleService {
     };
   }
 
+  async delete(uuid: string) {
+    const deletedArticle = await this.prisma.article.delete({
+      where: { uuid },
+      include: {
+        category: true,
+        tags: { include: { tag: true } },
+      },
+    });
+
+    return {
+      ...deletedArticle,
+      tags: deletedArticle.tags.map(({ tag }) => ({ ...tag })),
+    };
+  }
+
   async findUnique(
     where: Prisma.ArticleWhereUniqueInput,
-    include: { [key: string]: any } = {},
+    include: { [key: string]: any } = undefined,
   ) {
     return await this.prisma.article.findUnique({ where, include });
   }
