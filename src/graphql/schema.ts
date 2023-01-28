@@ -30,6 +30,14 @@ export interface UpdateArticleInput {
 export interface GetArticlesInput {
     page?: Nullable<number>;
     count?: Nullable<number>;
+    all?: Nullable<boolean>;
+}
+
+export interface GetArticlesByCategoryUuidInput {
+    category_uuid: string;
+    page?: Nullable<number>;
+    count?: Nullable<number>;
+    all?: Nullable<boolean>;
 }
 
 export interface UpdateCategoryInput {
@@ -67,6 +75,7 @@ export interface ArticlesResponse {
 
 export interface IQuery {
     getArticles(input?: Nullable<GetArticlesInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
+    getArticlesByCategoryUuid(input?: Nullable<GetArticlesByCategoryUuidInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
     dummy(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
 }
 

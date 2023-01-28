@@ -39,6 +39,14 @@ extend type Mutation {
 input GetArticlesInput {
   page: Int = 1
   count: Int = 10
+  all: Boolean = false
+}
+
+input GetArticlesByCategoryUuidInput {
+  category_uuid: ID!
+  page: Int = 1
+  count: Int = 10
+  all: Boolean = false
 }
 
 type ArticlesResponse {
@@ -48,4 +56,7 @@ type ArticlesResponse {
 
 extend type Query {
   getArticles(input: GetArticlesInput): ArticlesResponse
+  getArticlesByCategoryUuid(
+    input: GetArticlesByCategoryUuidInput
+  ): ArticlesResponse
 }

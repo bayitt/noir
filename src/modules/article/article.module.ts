@@ -5,7 +5,10 @@ import {
   DeleteArticleResolver,
   UpdateArticleResolver,
 } from './mutations';
-import { GetArticlesResolver } from './queries';
+import {
+  GetArticlesByCategoryUuidResolver,
+  GetArticlesResolver,
+} from './queries';
 import { ArticleService } from './article.service';
 import { CategoryModule } from '../category/category.module';
 import { PrismaModule } from '../prisma/prisma.module';
@@ -18,6 +21,7 @@ import { TagModule } from '../tag/tag.module';
     DeleteArticleResolver,
     UpdateArticleResolver,
     GetArticlesResolver,
+    GetArticlesByCategoryUuidResolver,
     ArticleService,
   ],
 })

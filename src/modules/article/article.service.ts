@@ -66,7 +66,7 @@ export class ArticleService {
       ...article,
       tags: article.tags.map(({ tag }) => ({ ...tag })),
     }));
-    const totalArticles = await this.prisma.article.count();
+    const totalArticles = await this.prisma.article.count({ where });
     const lastPage = Math.ceil(totalArticles / take);
 
     return {

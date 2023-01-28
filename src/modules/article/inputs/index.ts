@@ -38,3 +38,18 @@ export class UpdateArticleInput extends PartialType(CreateArticleInput) {
   @Field()
   slug?: string;
 }
+
+@InputType()
+export class GetArticlesByCategoryUuidInput {
+  @Field()
+  category_uuid: string;
+
+  @Field()
+  page: number;
+
+  @Field()
+  count: number;
+
+  @Field()
+  all: boolean;
+}
