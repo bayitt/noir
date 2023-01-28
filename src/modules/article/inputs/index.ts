@@ -40,9 +40,9 @@ export class UpdateArticleInput extends PartialType(CreateArticleInput) {
 }
 
 @InputType()
-export class GetArticlesByCategoryUuidInput {
+export class GetArticlesByCategorySlugInput {
   @Field()
-  category_uuid: string;
+  category_slug: string;
 
   @Field()
   page: number;

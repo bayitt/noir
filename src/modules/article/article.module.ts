@@ -6,7 +6,7 @@ import {
   UpdateArticleResolver,
 } from './mutations';
 import {
-  GetArticlesByCategoryUuidResolver,
+  GetArticlesByCategorySlugResolver,
   GetArticlesResolver,
 } from './queries';
 import { ArticleService } from './article.service';
@@ -21,7 +21,7 @@ import { TagModule } from '../tag/tag.module';
     DeleteArticleResolver,
     UpdateArticleResolver,
     GetArticlesResolver,
-    GetArticlesByCategoryUuidResolver,
+    GetArticlesByCategorySlugResolver,
     ArticleService,
   ],
 })

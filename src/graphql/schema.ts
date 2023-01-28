@@ -33,11 +33,10 @@ export interface GetArticlesInput {
     all?: Nullable<boolean>;
 }
 
-export interface GetArticlesByCategoryUuidInput {
-    category_uuid: string;
+export interface GetArticlesByCategorySlugInput {
+    category_slug: string;
     page?: Nullable<number>;
     count?: Nullable<number>;
-    all?: Nullable<boolean>;
 }
 
 export interface UpdateCategoryInput {
@@ -75,7 +74,7 @@ export interface ArticlesResponse {
 
 export interface IQuery {
     getArticles(input?: Nullable<GetArticlesInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
-    getArticlesByCategoryUuid(input?: Nullable<GetArticlesByCategoryUuidInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
+    getArticlesByCategorySlug(input?: Nullable<GetArticlesByCategorySlugInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
     dummy(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
 }
 
