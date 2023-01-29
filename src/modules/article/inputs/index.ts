@@ -38,3 +38,27 @@ export class UpdateArticleInput extends PartialType(CreateArticleInput) {
   @Field()
   slug?: string;
 }
+
+@InputType()
+export class GetArticlesByCategorySlugInput {
+  @Field()
+  category_slug: string;
+
+  @Field()
+  page: number;
+
+  @Field()
+  count: number;
+
+  @Field()
+  all: boolean;
+}
+
+@InputType()
+export class GetArticleInput {
+  @Field()
+  slug: string;
+
+  @Field()
+  isAdmin: boolean;
+}

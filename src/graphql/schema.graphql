@@ -14,6 +14,11 @@ type Mutation {
   login: AuthResponse
 }
 
+type Pagination {
+  currentPage: Int!
+  lastPage: Int!
+}
+
 #include category.graphql
 #include article.graphql
 #include tag.graphql

@@ -35,3 +35,33 @@ extend type Mutation {
   updateArticle(input: UpdateArticleInput): Article
   deleteArticle(uuid: ID!): Article
 }
+
+input GetArticlesInput {
+  page: Int = 1
+  count: Int = 10
+  isAdmin: Boolean = false
+}
+
+input GetArticlesByCategorySlugInput {
+  category_slug: String!
+  page: Int = 1
+  count: Int = 10
+}
+
+input GetArticleInput {
+  slug: String!
+  isAdmin: Boolean = false
+}
+
+type ArticlesResponse {
+  articles: [Article]
+  pagination: Pagination
+}
+
+extend type Query {
+  getArticles(input: GetArticlesInput): ArticlesResponse
+  getArticlesByCategorySlug(
+    input: GetArticlesByCategorySlugInput
+  ): ArticlesResponse
+  getArticle(input: GetArticleInput): Article
+}

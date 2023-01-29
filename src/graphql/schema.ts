@@ -27,6 +27,23 @@ export interface UpdateArticleInput {
     tags?: Nullable<Nullable<string>[]>;
 }
 
+export interface GetArticlesInput {
+    page?: Nullable<number>;
+    count?: Nullable<number>;
+    isAdmin?: Nullable<boolean>;
+}
+
+export interface GetArticlesByCategorySlugInput {
+    category_slug: string;
+    page?: Nullable<number>;
+    count?: Nullable<number>;
+}
+
+export interface GetArticleInput {
+    slug: string;
+    isAdmin?: Nullable<boolean>;
+}
+
 export interface UpdateCategoryInput {
     uuid: string;
     name?: Nullable<string>;
@@ -55,6 +72,18 @@ export interface IMutation {
     login(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
 }
 
+export interface ArticlesResponse {
+    articles?: Nullable<Nullable<Article>[]>;
+    pagination?: Nullable<Pagination>;
+}
+
+export interface IQuery {
+    getArticles(input?: Nullable<GetArticlesInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
+    getArticlesByCategorySlug(input?: Nullable<GetArticlesByCategorySlugInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
+    getArticle(input?: Nullable<GetArticleInput>): Nullable<Article> | Promise<Nullable<Article>>;
+    dummy(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
+}
+
 export interface Category {
     uuid: string;
     name: string;
@@ -68,8 +97,9 @@ export interface AuthResponse {
     token: string;
 }
 
-export interface IQuery {
-    dummy(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
+export interface Pagination {
+    currentPage: number;
+    lastPage: number;
 }
 
 export interface Tag {

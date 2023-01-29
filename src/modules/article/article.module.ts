@@ -5,6 +5,11 @@ import {
   DeleteArticleResolver,
   UpdateArticleResolver,
 } from './mutations';
+import {
+  GetArticleResolver,
+  GetArticlesByCategorySlugResolver,
+  GetArticlesResolver,
+} from './queries';
 import { ArticleService } from './article.service';
 import { CategoryModule } from '../category/category.module';
 import { PrismaModule } from '../prisma/prisma.module';
@@ -16,6 +21,9 @@ import { TagModule } from '../tag/tag.module';
     CreateArticleResolver,
     DeleteArticleResolver,
     UpdateArticleResolver,
+    GetArticleResolver,
+    GetArticlesResolver,
+    GetArticlesByCategorySlugResolver,
     ArticleService,
   ],
 })
