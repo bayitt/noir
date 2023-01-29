@@ -24,6 +24,9 @@ export class CreateArticleResolver {
       '-' +
       generateRandomString(6);
     slug = slug.startsWith('/') ? slug : '/' + slug;
+    const redirectLink =
+      generateRandomString(Number((Math.random() * 6).toFixed(0) as any)) +
+      generateRandomString(Number((Math.random() * 6).toFixed(0) as any));
 
     let articleInput: Prisma.ArticleCreateInput = {
       title: args.title,
@@ -32,6 +35,11 @@ export class CreateArticleResolver {
       slug,
       tags: {
         create: await this.createTags(args?.tags ?? []),
+      },
+      redirect: {
+        create: {
+          link: redirectLink,
+        },
       },
     };
 

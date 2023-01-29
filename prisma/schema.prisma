@@ -13,7 +13,7 @@ datasource db {
 model Article {
   uuid           String         @id @default(uuid())
   category_uuid  String?
-  category       Category?      @relation(fields: [category_uuid], references: [uuid], onUpdate: Cascade, onDelete: Cascade)
+  category       Category?      @relation(fields: [category_uuid], references: [uuid], onUpdate: Cascade, onDelete: SetNull)
   title          String
   slug           String
   status         Int            @default(0)
