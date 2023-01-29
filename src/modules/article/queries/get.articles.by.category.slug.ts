@@ -7,11 +7,11 @@ import { GetArticlesByCategorySlugInput } from '../inputs';
 import { ArticlesByCategorySlugPipe } from '../pipes';
 
 @Resolver()
-@UnguardedTokenRoute()
 export class GetArticlesByCategorySlugResolver {
   constructor(private articleService: ArticleService) {}
 
   @Query()
+  @UnguardedTokenRoute()
   async getArticlesByCategorySlug(
     @Args('input', ArticlesByCategorySlugPipe)
     args: Omit<GetArticlesByCategorySlugInput, 'category_slug'> & {
