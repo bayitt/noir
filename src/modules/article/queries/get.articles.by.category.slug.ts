@@ -1,11 +1,13 @@
 import { Prisma } from '.prisma/client';
 import { Resolver, Query, Args } from '@nestjs/graphql';
+import { UnguardedTokenRoute } from '../../../utilities';
 import { Category } from 'src/modules/category/category.schema';
 import { ArticleService } from '../article.service';
 import { GetArticlesByCategorySlugInput } from '../inputs';
 import { ArticlesByCategorySlugPipe } from '../pipes';
 
 @Resolver()
+@UnguardedTokenRoute()
 export class GetArticlesByCategorySlugResolver {
   constructor(private articleService: ArticleService) {}
 

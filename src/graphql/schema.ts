@@ -30,13 +30,18 @@ export interface UpdateArticleInput {
 export interface GetArticlesInput {
     page?: Nullable<number>;
     count?: Nullable<number>;
-    all?: Nullable<boolean>;
+    isAdmin?: Nullable<boolean>;
 }
 
 export interface GetArticlesByCategorySlugInput {
     category_slug: string;
     page?: Nullable<number>;
     count?: Nullable<number>;
+}
+
+export interface GetArticleInput {
+    slug: string;
+    isAdmin?: Nullable<boolean>;
 }
 
 export interface UpdateCategoryInput {
@@ -75,6 +80,7 @@ export interface ArticlesResponse {
 export interface IQuery {
     getArticles(input?: Nullable<GetArticlesInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
     getArticlesByCategorySlug(input?: Nullable<GetArticlesByCategorySlugInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
+    getArticle(input?: Nullable<GetArticleInput>): Nullable<Article> | Promise<Nullable<Article>>;
     dummy(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
 }
 

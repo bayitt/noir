@@ -39,13 +39,18 @@ extend type Mutation {
 input GetArticlesInput {
   page: Int = 1
   count: Int = 10
-  all: Boolean = false
+  isAdmin: Boolean = false
 }
 
 input GetArticlesByCategorySlugInput {
   category_slug: String!
   page: Int = 1
   count: Int = 10
+}
+
+input GetArticleInput {
+  slug: String!
+  isAdmin: Boolean = false
 }
 
 type ArticlesResponse {
@@ -58,4 +63,5 @@ extend type Query {
   getArticlesByCategorySlug(
     input: GetArticlesByCategorySlugInput
   ): ArticlesResponse
+  getArticle(input: GetArticleInput): Article
 }

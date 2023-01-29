@@ -53,3 +53,12 @@ export class GetArticlesByCategorySlugInput {
   @Field()
   all: boolean;
 }
+
+@InputType()
+export class GetArticleInput {
+  @Field()
+  slug: string;
+
+  @Field()
+  isAdmin: boolean;
+}
