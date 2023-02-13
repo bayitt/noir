@@ -40,4 +40,8 @@ export class CategoryService {
   async findMany(where: Prisma.CategoryWhereInput) {
     return await this.prisma.category.findMany({ where });
   }
+
+  async delete(uuid: string) {
+    return await this.prisma.category.delete({ where: { uuid } });
+  }
 }

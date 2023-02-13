@@ -10,7 +10,7 @@ export class CreateCategoryPipe implements PipeTransform {
     let slug = name.toLowerCase().replace(/ /g, '-');
     slug = slug.startsWith('/') ? slug : '/' + slug;
     const categories = await this.categoryService.findMany({
-      OR: [{ name }, { slug }],
+      OR: [{ name: name.toLowerCase() }, { slug }],
     });
 
     if (categories.length > 0)
@@ -20,6 +20,6 @@ export class CreateCategoryPipe implements PipeTransform {
         `Category with name ${name} exists already`,
       );
 
-    return name;
+    return name.toLowerCase();
   }
 }

@@ -69,6 +69,7 @@ export interface IMutation {
     deleteArticle(uuid: string): Nullable<Article> | Promise<Nullable<Article>>;
     createCategory(name?: Nullable<string>): Nullable<Category> | Promise<Nullable<Category>>;
     updateCategory(input?: Nullable<UpdateCategoryInput>): Nullable<Category> | Promise<Nullable<Category>>;
+    deleteCategory(uuid: string): Nullable<Category> | Promise<Nullable<Category>>;
     login(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
 }
 

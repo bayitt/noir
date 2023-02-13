@@ -15,4 +15,5 @@ input UpdateCategoryInput {
 extend type Mutation {
   createCategory(name: String): Category
   updateCategory(input: UpdateCategoryInput): Category
+  deleteCategory(uuid: String!): Category
 }
