@@ -26,12 +26,13 @@ model Article {
 }
 
 model Category {
-  uuid       String    @id @default(uuid())
-  name       String    @unique
-  slug       String    @unique
-  created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
-  articles   Article[]
+  uuid        String    @id @default(uuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?   @db.VarChar(200)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  articles    Article[]
 }
 
 model Tag {
