@@ -6,6 +6,7 @@ import {
   DeleteCategoryResolver,
   UpdateCategoryResolver,
 } from './mutations';
+import { GetCategoriesResolver } from './queries';
 
 @Module({
   imports: [PrismaModule],
@@ -14,6 +15,7 @@ import {
     CreateCategoryResolver,
     DeleteCategoryResolver,
     UpdateCategoryResolver,
+    GetCategoriesResolver,
   ],
   exports: [CategoryService],
 })

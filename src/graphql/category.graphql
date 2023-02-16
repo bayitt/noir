@@ -17,3 +17,8 @@ extend type Mutation {
   updateCategory(input: UpdateCategoryInput): Category
   deleteCategory(uuid: String!): Category
 }
+
+extend type Query {
+  getCategory: Category
+  getCategories: [Category]
+}

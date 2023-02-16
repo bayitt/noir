@@ -82,6 +82,8 @@ export interface IQuery {
     getArticles(input?: Nullable<GetArticlesInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
     getArticlesByCategorySlug(input?: Nullable<GetArticlesByCategorySlugInput>): Nullable<ArticlesResponse> | Promise<Nullable<ArticlesResponse>>;
     getArticle(input?: Nullable<GetArticleInput>): Nullable<Article> | Promise<Nullable<Article>>;
+    getCategory(): Nullable<Category> | Promise<Nullable<Category>>;
+    getCategories(): Nullable<Nullable<Category>[]> | Promise<Nullable<Nullable<Category>[]>>;
     dummy(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
 }
 
