@@ -12,4 +12,5 @@ export class Article {
   created_at: string;
   updated_at: string;
   tags: Tag[];
+  related_articles?: Article[];
 }

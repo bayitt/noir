@@ -4,8 +4,10 @@ type Article {
   title: String!
   slug: String!
   status: Boolean!
+  excerpt: String
   content: String
   featured_image: String
+  related_articles: [Article]
   tags: [Tag]
   created_at: DateTime!
   updated_at: DateTime!

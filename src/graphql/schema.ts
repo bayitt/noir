@@ -56,8 +56,10 @@ export interface Article {
     title: string;
     slug: string;
     status: boolean;
+    excerpt?: Nullable<string>;
     content?: Nullable<string>;
     featured_image?: Nullable<string>;
+    related_articles?: Nullable<Nullable<Article>[]>;
     tags?: Nullable<Nullable<Tag>[]>;
     created_at: DateTime;
     updated_at: DateTime;
@@ -91,6 +93,7 @@ export interface Category {
     uuid: string;
     name: string;
     slug: string;
+    description: string;
     created_at: DateTime;
     updated_at: DateTime;
 }
