@@ -60,3 +60,9 @@ model Redirect {
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
 }
+
+model Subscriber {
+  uuid       String   @id @default(uuid())
+  email      String   @unique @db.VarChar(255)
+  created_at DateTime @default(now())
+}

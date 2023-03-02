@@ -11,7 +11,7 @@ export class GetArticleResolver {
   @Query()
   @UnguardedTokenRoute()
   async getArticle(@Args('input', GetArticlePipe) article: Article) {
-    const related_articles = this.articleService.findMany(
+    const { articles: related_articles } = await this.articleService.findMany(
       {
         NOT: { uuid: article.uuid },
         AND: [{ category_uuid: article?.category?.uuid }],

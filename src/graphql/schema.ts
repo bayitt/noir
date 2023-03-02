@@ -73,6 +73,7 @@ export interface IMutation {
     updateCategory(input?: Nullable<UpdateCategoryInput>): Nullable<Category> | Promise<Nullable<Category>>;
     deleteCategory(uuid: string): Nullable<Category> | Promise<Nullable<Category>>;
     login(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
+    subscribe(email: string): Nullable<Subscriber> | Promise<Nullable<Subscriber>>;
 }
 
 export interface ArticlesResponse {
@@ -106,6 +107,12 @@ export interface AuthResponse {
 export interface Pagination {
     currentPage: number;
     lastPage: number;
+}
+
+export interface Subscriber {
+    uuid: string;
+    email: string;
+    created_at: DateTime;
 }
 
 export interface Tag {
