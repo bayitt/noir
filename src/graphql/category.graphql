@@ -2,6 +2,7 @@ type Category {
   uuid: ID!
   name: String!
   slug: String!
+  description: String!
   created_at: DateTime!
   updated_at: DateTime!
 }

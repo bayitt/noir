@@ -56,8 +56,10 @@ export interface Article {
     title: string;
     slug: string;
     status: boolean;
+    excerpt?: Nullable<string>;
     content?: Nullable<string>;
     featured_image?: Nullable<string>;
+    related_articles?: Nullable<Nullable<Article>[]>;
     tags?: Nullable<Nullable<Tag>[]>;
     created_at: DateTime;
     updated_at: DateTime;
@@ -71,6 +73,7 @@ export interface IMutation {
     updateCategory(input?: Nullable<UpdateCategoryInput>): Nullable<Category> | Promise<Nullable<Category>>;
     deleteCategory(uuid: string): Nullable<Category> | Promise<Nullable<Category>>;
     login(): Nullable<AuthResponse> | Promise<Nullable<AuthResponse>>;
+    subscribe(email: string): Nullable<Subscriber> | Promise<Nullable<Subscriber>>;
 }
 
 export interface ArticlesResponse {
@@ -91,6 +94,7 @@ export interface Category {
     uuid: string;
     name: string;
     slug: string;
+    description: string;
     created_at: DateTime;
     updated_at: DateTime;
 }
@@ -103,6 +107,12 @@ export interface AuthResponse {
 export interface Pagination {
     currentPage: number;
     lastPage: number;
+}
+
+export interface Subscriber {
+    uuid: string;
+    email: string;
+    created_at: DateTime;
 }
 
 export interface Tag {

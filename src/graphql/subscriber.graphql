@@ -1,0 +1,9 @@
+type Subscriber {
+  uuid: ID!
+  email: String!
+  created_at: DateTime!
+}
+
+extend type Mutation {
+  subscribe(email: String!): Subscriber
+}
