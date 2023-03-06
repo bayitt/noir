@@ -12,12 +12,12 @@ datasource db {
 
 model Article {
   uuid           String         @id @default(uuid())
-  category_uuid  String?
+  category_uuid  String?        @db.VarChar(255)
   category       Category?      @relation(fields: [category_uuid], references: [uuid], onUpdate: Cascade, onDelete: SetNull)
-  title          String
-  slug           String
+  title          String         @db.VarChar(255)
+  slug           String         @db.VarChar(255)
   status         Int            @default(0)
-  featured_image String?
+  featured_image String?        @db.VarChar(255)
   content        String?        @db.Text
   created_at     DateTime       @default(now())
   updated_at     DateTime       @updatedAt
@@ -27,9 +27,9 @@ model Article {
 
 model Category {
   uuid        String    @id @default(uuid())
-  name        String    @unique
-  slug        String    @unique
-  description String?   @db.VarChar(200)
+  name        String    @unique @db.VarChar(255)
+  slug        String    @unique @db.VarChar(255)
+  description String?   @db.Text
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
   articles    Article[]
@@ -37,16 +37,16 @@ model Category {
 
 model Tag {
   uuid       String         @id @default(uuid())
-  name       String         @unique
+  name       String         @unique @db.VarChar(255)
   created_at DateTime       @default(now())
   updated_at DateTime       @updatedAt
   posts      ArticleOnTag[]
 }
 
 model ArticleOnTag {
-  article_uuid String
+  article_uuid String  @db.VarChar(255)
   article      Article @relation(fields: [article_uuid], references: [uuid], onUpdate: Cascade, onDelete: Cascade)
-  tag_uuid     String
+  tag_uuid     String  @db.VarChar(255)
   tag          Tag     @relation(fields: [tag_uuid], references: [uuid], onUpdate: Cascade, onDelete: Cascade)
 
   @@id([article_uuid, tag_uuid])
@@ -54,8 +54,8 @@ model ArticleOnTag {
 
 model Redirect {
   uuid         String   @id @default(uuid())
-  link         String
-  article_uuid String   @unique
+  link         String   @db.VarChar(255)
+  article_uuid String   @unique @db.VarChar(255)
   article      Article  @relation(fields: [article_uuid], references: [uuid], onUpdate: Cascade, onDelete: Cascade)
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
