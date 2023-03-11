@@ -33,6 +33,8 @@ COPY --from=build /usr/src/app/dist /usr/src/app/dist
 
 COPY --from=build /usr/src/app/src/graphql /usr/src/app/dist/graphql
 
+COPY --from=build /usr/src/app/prisma /usr/src/app/prisma
+
 COPY --from=build usr/src/app/node_modules /usr/src/app/node_modules
 
 EXPOSE 3000
