@@ -12,6 +12,10 @@ RUN yarn add glob rimraf
 
 RUN apk add --update python3 make g++\ && rm -rf /var/cache/apk/*
 
+RUN yarn install
+
+RUN npx prisma generate
+
 COPY . .
 
 RUN rm -rf dist
@@ -25,13 +29,11 @@ ENV NODE_ENV=production
 
 WORKDIR usr/src/app
 
-COPY package.json ./
-
-RUN yarn install
-
 COPY --from=build /usr/src/app/dist /usr/src/app/dist
 
 COPY --from=build /usr/src/app/src/graphql /usr/src/app/dist/graphql
+
+COPY --from=build usr/src/app/node_modules /usr/src/app/node_modules
 
 EXPOSE 3000
 
