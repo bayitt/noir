@@ -21,9 +21,21 @@ import { SubscriberModule } from './modules/subscriber/subscriber.module';
     UploadScalar,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      typePaths: [join(process.cwd(), 'src/graphql/*.graphql')],
+      typePaths: [
+        join(
+          process.cwd(),
+          (process.env?.NODE_ENV ?? '').toLowerCase() === 'production'
+            ? 'dist/graphql/*.graphql'
+            : 'src/graphql/*.graphql',
+        ),
+      ],
       definitions: {
-        path: join(process.cwd(), 'src/graphql/schema.ts'),
+        path: join(
+          process.cwd(),
+          (process.env?.NODE_ENV ?? '').toLowerCase() === 'production'
+            ? 'dist/graphql/schema.ts'
+            : 'src/graphql/schema.ts',
+        ),
       },
       introspection: true,
       playground: true,
