@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, HttpCode } from '@nestjs/common';
 import { AppService } from './app.service';
+import { UnguardedTokenRoute } from './utilities';
 
 @Controller()
 export class AppController {
@@ -8,5 +9,12 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @UnguardedTokenRoute()
+  @Post('/ping')
+  @HttpCode(200)
+  ping() {
+    return { status: 'ok' };
   }
 }
