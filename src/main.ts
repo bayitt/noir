@@ -12,6 +12,6 @@ async function bootstrap() {
   const corsDomains = configService.get('ENABLED_CORS_DOMAINS').split(',');
   app.enableCors({ origin: corsDomains });
 
-  await app.listen(3005);
+  await app.listen(3000);
 }
 bootstrap();
