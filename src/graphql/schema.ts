@@ -95,6 +95,7 @@ export interface Category {
     name: string;
     slug: string;
     description: string;
+    color?: Nullable<string>;
     created_at: DateTime;
     updated_at: DateTime;
 }

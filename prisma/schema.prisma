@@ -30,6 +30,7 @@ model Category {
   name        String    @unique @db.VarChar(255)
   slug        String    @unique @db.VarChar(255)
   description String?   @db.Text
+  color       String?   @db.VarChar(10)
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
   articles    Article[]
