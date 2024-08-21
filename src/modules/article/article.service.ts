@@ -64,7 +64,7 @@ export class ArticleService {
     });
     const parsedArticles = articles.map((article) => ({
       ...article,
-      excerpt: article.content ? article.content.slice(0, 150) + '...' : null,
+      excerpt: article.content ? article.content.slice(0, 200) + '...' : null,
       tags: article.tags.map(({ tag }) => ({ ...tag })),
     }));
     const totalArticles = await this.prisma.article.count({ where });
